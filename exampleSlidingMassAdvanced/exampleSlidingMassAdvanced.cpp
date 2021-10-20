@@ -91,8 +91,8 @@ protected:
             const IntegrandInput& input, double& integrand) const override {
         getModel().realizeAcceleration(input.state);
         const auto& controls = getModel().getControls(input.state);
-        const auto& velocity = getModel().calcMassCenterVelocity(input.state);
-        //integrand = sqrt(controls.normSqr())*sqrt(velocity.normSqr());
+        //const auto& velocity = getModel().calcMassCenterVelocity(input.state);
+        //integrand = controls.normSqr() - velocity.normSqr();
         integrand = controls.normSqr();
     }
     void calcGoalImpl(
@@ -102,13 +102,13 @@ protected:
 
         //SimTK::Real timeInitial = input.initial_time();
         //SimTK::Real timeFinal   = input.final_time();
-        //SimTK::Real duration    =  timeFinal - timeInitial;
+        //SimTK::Real duration    = timeFinal - timeInitial;
 
         //SimTK::Vec3 comInitial = getModel().calcMassCenterPosition(input.initial_state);
         //SimTK::Vec3 comFinal   = getModel().calcMassCenterPosition(input.final_state);
         
         //SimTK::Real displacement = (comFinal - comInitial).norm();
-        // Calculate average gait speed.
+        // Calculate average speed.
         //cost[0] = (displacement / duration);
     }
 };
@@ -169,10 +169,17 @@ int main() {
     guess.setState("/slider/position/value", {0.0, 1.0});
     solver.setGuess(guess);
 
+    // Now that we've finished setting up the tool, print it to a file.
+    study.print("sliding_mass.omoco");
+
     // Solve the problem.
     // ==================
     MocoSolution solution = study.solve();
     std::cout << "Solution status: " << solution.getStatus() << std::endl;
+    if (solution.isSealed()) {
+        solution.unseal();
+    }
+
     std::cout << "Measured custom cost is" << solution.getObjectiveTerm("effort") << std::endl;
     study.visualize(solution);
     return EXIT_SUCCESS;
