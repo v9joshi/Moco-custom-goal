@@ -1,0 +1,4 @@
+C:/Users/varunjos/Documents/GitHub/Moco-custom-goal/exampleSlidingMass/Build/CMakeFiles/exampleSlidingMass.dir
+C:/Users/varunjos/Documents/GitHub/Moco-custom-goal/exampleSlidingMass/Build/CMakeFiles/Copy_OpenSim_DLLs.dir
+C:/Users/varunjos/Documents/GitHub/Moco-custom-goal/exampleSlidingMass/Build/CMakeFiles/ALL_BUILD.dir
+C:/Users/varunjos/Documents/GitHub/Moco-custom-goal/exampleSlidingMass/Build/CMakeFiles/ZERO_CHECK.dir

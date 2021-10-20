@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\varunjos\Documents\GitHub\Moco-custom-goal\exampleSlidingMass\Build\CMakeFiles\8aebd96a7f6207d66cec2471d948bb6d\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8F398F0C-FAB7-3791-9693-214C0B04113E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
