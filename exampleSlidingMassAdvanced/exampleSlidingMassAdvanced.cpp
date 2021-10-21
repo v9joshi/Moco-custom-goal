@@ -92,8 +92,10 @@ protected:
         getModel().realizeAcceleration(input.state);
         const auto& controls = getModel().getControls(input.state);
         //const auto& velocity = getModel().calcMassCenterVelocity(input.state);
-        //integrand = controls.normSqr() - velocity.normSqr();
-        integrand = controls.normSqr();
+        const auto& acceleration = getModel().calcMassCenterAcceleration(input.state);
+        // integrand = acceleration.normSqr(); 
+        // integrand = controls.normSqr();
+        // integrand = controls.normSqr() - velocity.normSqr();
     }
     void calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const override {
