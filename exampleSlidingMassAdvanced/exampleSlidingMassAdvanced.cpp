@@ -100,7 +100,7 @@ protected:
     void calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const override {
         // Use the integral of the integrand
-        cost[0] = input.integral;
+        cost[0] = input.integral
 
         //SimTK::Real timeInitial = input.initial_time();
         //SimTK::Real timeFinal   = input.final_time();
@@ -146,8 +146,10 @@ int main() {
 
     // Cost.
     // -----
-    //problem.addGoal<MocoFinalTimeGoal>("time");
-    problem.addGoal<MocoCustomEffortGoal>("effort");
+    auto* timeGoal   = problem.addGoal<MocoFinalTimeGoal>("time");
+    auto* effortGoal = problem.addGoal<MocoCustomEffortGoal>("effort");
+
+    //effortGoal->setWeight(100);
 
     // Configure the solver.
     // =====================
