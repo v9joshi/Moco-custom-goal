@@ -90,12 +90,12 @@ protected:
     void calcIntegrandImpl(
             const IntegrandInput& input, double& integrand) const override {
         getModel().realizeAcceleration(input.state);
-        const auto& controls = getModel().getControls(input.state);
+        //const auto& controls = getModel().getControls(input.state);
         //const auto& velocity = getModel().calcMassCenterVelocity(input.state);
         const auto& acceleration = getModel().calcMassCenterAcceleration(input.state);
-        // integrand = acceleration.normSqr(); 
-        // integrand = controls.normSqr();
-        // integrand = controls.normSqr() - velocity.normSqr();
+        integrand = acceleration.normSqr(); 
+        //integrand = controls.normSqr();
+        //integrand = controls.normSqr() - velocity.normSqr();
     }
     void calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const override {
@@ -148,10 +148,11 @@ int main() {
 
     // Cost.
     // -----
-    auto* timeGoal   = problem.addGoal<MocoFinalTimeGoal>("time");
-    auto* effortGoal = problem.addGoal<MocoCustomEffortGoal>("effort");
+    //auto* timeGoal   = problem.addGoal<MocoFinalTimeGoal>("time");
+    auto* effortGoal   = problem.addGoal<MocoCustomEffortGoal>("effort");
 
-    //effortGoal->setWeight(100);
+    //timeGoal->setWeight(1);
+    effortGoal->setWeight(1);
 
     // Configure the solver.
     // =====================
