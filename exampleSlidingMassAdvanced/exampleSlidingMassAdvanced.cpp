@@ -102,8 +102,8 @@ protected:
         // Use the integral of the integrand
         cost[0] = input.integral;
 
-        //SimTK::Real timeInitial = input.initial_time();
-        //SimTK::Real timeFinal   = input.final_time();
+        //SimTK::Real timeInitial = input.initial_state.getTime();
+        //SimTK::Real timeFinal   = input.final_state.getTime();
         //SimTK::Real duration    = timeFinal - timeInitial;
 
         //SimTK::Vec3 comInitial = getModel().calcMassCenterPosition(input.initial_state);
