@@ -26,7 +26,7 @@ void young_sim(double targetSpeed) {
 
     // Model (dynamics).
     // -----------------
-    Model model("C:/Users/varunjos/Documents/GitHub/Walking/WalkSim/Scaled_Models/walk2D_young_dissipative.osim");// _breakdown.osim");
+    Model model("../walk2D_young.osim");// _breakdown.osim");
     model.initSystem();
 
     // Weird roundabout way
@@ -228,7 +228,7 @@ void young_sim(double targetSpeed) {
     std::cout << "setting guess file" << std::endl;
     // Specify an initial guess.
     // -------------------------
-    solver.setGuessFile("C:/Users/varunjos/Documents/GitHub/Moco-custom-goal/exampleCustomGoal/gaitTracking_solution_050intervals.sto");
+    solver.setGuessFile("../gaitTracking_solution_050intervals.sto");
 
     std::cout << "solving study" << std::endl;
     // Print it out somewhere
@@ -290,7 +290,7 @@ void young_sim(double targetSpeed) {
     TimeSeriesTable externalForcesTableFlat = createExternalLoadsTableForGait(model, fullStrideSol, contact_r, contact_l);
     STOFileAdapter::write(externalForcesTableFlat, grfFileName);
 
-    //study.visualize(solution);       
+    study.visualize(solution);       
 
     //return EXIT_SUCCESS;
 }
