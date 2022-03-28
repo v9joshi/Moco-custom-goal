@@ -258,7 +258,6 @@ void young_sim(double targetSpeed) {
     //outputFileName = std::strcat(outputFileName, +"_output.sto");
     
     solution.write(outputFileName);
-    //solution.write("C:/Users/varunjos/Documents/GitHub/Walking/WalkSim/Reference_Solutions/recentbest_young.sto");
 
     MocoTrajectory fullStrideSol = createPeriodicTrajectory(solution);
     fullStrideSol.write(outputFileName_Full);
