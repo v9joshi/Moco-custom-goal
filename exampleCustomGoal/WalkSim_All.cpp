@@ -154,24 +154,26 @@ void young_sim(double targetSpeed) {
 
     // Effort. Get a reference to the MocoControlGoal that is added to every
     // MocoTrack problem by default.
-    MocoControlGoal* effort = problem.addGoal<MocoControlGoal>("control_effort");
-    effort->setWeight(0.001);
-    effort->setDivideByDisplacement(true);
-    effort->setExponent(2);
+    //MocoControlGoal* effort = problem.addGoal<MocoControlGoal>("control_effort");
+    //effort->setWeight(0.001);
+    //effort->setDivideByDisplacement(true);
+    //effort->setExponent(2);
 
 
     // Metabolics; total metabolic rate includes activation heat rate,
     // maintenance heat rate, shortening heat rate, mechanical work rate, and
     // basal metabolic rate.
-    auto* metGoal = problem.addGoal<MocoOutputGoal>("metcost", 1);
+    //auto* metGoal = problem.addGoal<MocoOutputGoal>("metcost", 1);
     //metGoal->setOutputPath("/smooth_metabolic_cost_young|total_metabolic_rate");
-    metGoal->setOutputPath("/metabolics|total_metabolic_rate");
-    metGoal->setDivideByDisplacement(true);
-    metGoal->setDivideByMass(true);
+    //metGoal->setOutputPath("/metabolics|total_metabolic_rate");
+    //metGoal->setDivideByDisplacement(true);
+    //metGoal->setDivideByMass(true);
 
     // Use the goal from the plugin:
-    auto* actGoal = problem.addGoal<MocoActivationSquaredGoal>("ActivationCost", 10);
+    auto* actGoal = problem.addGoal<MocoActivationSquaredGoal>("ActivationCost");
     actGoal->setDivideByDisplacement(true);
+    actGoal->setMode("endpoint_constraint");
+    actGoal->setEndPointGoal(1.1);
 
     // Add a speed goal:
     auto* speedGoal = problem.addGoal<MocoAverageSpeedGoal>();
@@ -245,7 +247,7 @@ void young_sim(double targetSpeed) {
 
     std::cout << "Solution status: " << solution.getStatus() << std::endl;
 
-    std::string fileHeader = "../Results/Young Healthy/cpp_young_";
+    std::string fileHeader = "../Results_";
     fileHeader = fileHeader + speedStr;
     std::string outputFileName = "_Solution.sto";
     outputFileName = fileHeader + outputFileName;
@@ -261,9 +263,9 @@ void young_sim(double targetSpeed) {
     MocoTrajectory fullStrideSol = createPeriodicTrajectory(solution);
     fullStrideSol.write(outputFileName_Full);
 
-    std::cout << "Control effort: " << solution.getObjectiveTerm("control_effort") << std::endl;
-    std::cout << "Metabolic cost: " << solution.getObjectiveTerm("metcost") << std::endl;
-    std::cout << "Activation cost: " << solution.getObjectiveTerm("ActivationCost") << std::endl;
+    //std::cout << "Control effort: " << solution.getObjectiveTerm("control_effort") << std::endl;
+    //std::cout << "Metabolic cost: " << solution.getObjectiveTerm("metcost") << std::endl;
+    //std::cout << "Activation cost: " << solution.getObjectiveTerm("ActivationCost") << std::endl;
 
     std::vector<std::string> contact_r;
     std::vector<std::string> contact_l;
