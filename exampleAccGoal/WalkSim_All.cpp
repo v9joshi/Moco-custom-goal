@@ -177,6 +177,7 @@ void young_sim(double targetSpeed) {
     // Use the goal from the plugin:
     auto* accGoal = problem.addGoal<MocoMarkerAccelerationGoal>("HeadAcc", 1);
     accGoal->setMarkerName("/markerset/headmarker");
+    accGoal->setDivideByDisplacement(true);
 
     // Add a speed goal:
     auto* speedGoal = problem.addGoal<MocoAverageSpeedGoal>();
