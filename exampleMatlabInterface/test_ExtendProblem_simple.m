@@ -89,6 +89,9 @@ solver.set_optim_max_iterations(max_iterations);
 % Solve the problem.
 % ==================
 solution = study.solve();
+ep.delete();
+
+%%
 solution.write('sliding_mass_solution.sto');
 dur = seconds(solution.getSolverDuration());
 [h,m,s] = hms(dur);
@@ -109,5 +112,3 @@ catch
         disp(['  ',termName,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
     end
 end
-
-ep.delete();
