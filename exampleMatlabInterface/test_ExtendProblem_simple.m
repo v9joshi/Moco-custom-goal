@@ -50,7 +50,7 @@ problem.setStateInfo('/slider/position/value', MocoBounds(0, 1), MocoInitialBoun
 
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
-problem.setStateInfo('/slider/position/speed', [-50, 50],[] , []);
+problem.setStateInfo('/slider/position/speed', [-50, 50], 0, 0);
 
 % Applied force must be between -50 and 50.
 problem.setControlInfo('/actuator', MocoBounds(-50, 50));
