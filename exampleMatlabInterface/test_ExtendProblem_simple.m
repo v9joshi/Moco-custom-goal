@@ -5,8 +5,8 @@ setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH
 import org.opensim.modeling.* %import opensim api library
 
 w = 1.0;
-mesh_interval = 50;
-max_iterations = 2;
+mesh_interval = 15;
+max_iterations = 200;
 outputDir = './output/';
 
 model = Model('pointmass.osim');
@@ -60,7 +60,7 @@ problem.setControlInfo('/actuator', MocoBounds(-50, 50));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
-ep.addMarkerGoal(1.0,'/markerset/testMarker',true);
+% ep.addMarkerGoal(1.0,'/markerset/testMarker',true);
 ep.addAccelerationGoal(1.0,{'/slider/position'},true);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
