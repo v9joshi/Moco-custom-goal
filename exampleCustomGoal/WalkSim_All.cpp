@@ -172,8 +172,9 @@ void young_sim(double targetSpeed) {
     // Use the goal from the plugin:
     auto* actGoal = problem.addGoal<MocoActivationSquaredGoal>("ActivationCost");
     actGoal->setDivideByDisplacement(true);
-    actGoal->setMode("endpoint_constraint");
-    actGoal->setEndPointGoal(1.1);
+    //actGoal->setMode("endpoint_constraint");
+    //actGoal->setEndPointGoal(1.1);
+    actGoal->setExponent(1.6);
 
     // Add a speed goal:
     auto* speedGoal = problem.addGoal<MocoAverageSpeedGoal>();

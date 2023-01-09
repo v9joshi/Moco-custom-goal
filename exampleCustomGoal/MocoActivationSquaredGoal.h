@@ -34,6 +34,9 @@ public:
     void setEndPointGoal(double end_point_goal) { set_end_point_goal(end_point_goal); }
     double getEndPointGoal() const { return get_end_point_goal(); }
 
+    // Public methods to change and get the exponent
+    void setExponent(double exponent) { set_exponent(exponent); }
+    double getExponent() const { return get_exponent(); }
 
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
@@ -56,12 +59,18 @@ protected:
     // Make the end_point_goal property
     OpenSim_DECLARE_PROPERTY(end_point_goal, double,
         "Target value for end-point goal (default: 0)");
+    // Allow for changes in exponent    
+    OpenSim_DECLARE_PROPERTY(exponent, double,
+        "Use the exponent of the activation in cost calculations (default: 2)");
 
     // Make a function to set the default values of these properties
     void constructProperties();
 
     // Make a private member that stores all the indices for muscle activations
     mutable std::vector<int> m_act_indices;
+    // Function that raises the activation to the power of the exponent
+    mutable std::function<double(const double&)> m_power_function;
+
 };
 
 } // namespace OpenSim
